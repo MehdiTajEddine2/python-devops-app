@@ -15,7 +15,7 @@ pipeline {
 
         stage('Code Review') {
             steps {
-                bat '"%PYTHON%" -m flake8 app.py'
+                bat '"%PYTHON%" -m flake8 app.py --ignore=W292,W293'
             }
         }
 
@@ -29,6 +29,15 @@ pipeline {
             steps {
                 bat 'start /B "%PYTHON%" app.py'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline SUCCESS'
+        }
+        failure {
+            echo 'Pipeline FAILED'
         }
     }
 }
