@@ -1,29 +1,33 @@
 pipeline {
     agent any
 
+    environment {
+        PYTHON = "C:\\Users\\LENOVO\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe"
+    }
+
     stages {
 
         stage('Build') {
             steps {
-                bat 'py -m pip install -r requirements.txt'
+                bat '"%PYTHON%" -m pip install -r requirements.txt'
             }
         }
 
         stage('Code Review') {
             steps {
-                bat 'py -m flake8 app.py'
+                bat '"%PYTHON%" -m flake8 app.py'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'py -m pytest'
+                bat '"%PYTHON%" -m pytest'
             }
         }
 
         stage('Deploy Localhost') {
             steps {
-                bat 'start /B py app.py'
+                bat 'start /B "%PYTHON%" app.py'
             }
         }
     }
