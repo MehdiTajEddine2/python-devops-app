@@ -27,14 +27,12 @@ pipeline {
 
         stage('Deploy Localhost') {
             steps {
-                bat '''
-                taskkill /F /IM python.exe >nul 2>&1 || exit /b 0
-                powershell -Command "Start-Process '%PYTHON%' -ArgumentList 'app.py'"
-                '''
+                 bat '''
+                 taskkill /F /IM python.exe >nul 2>&1 || exit /b 0
+                 cmd /c start "FlaskApp" "%PYTHON%" app.py
+                 '''
             }
         }
-    }
-
     post {
         success {
             echo "PIPELINE SUCCESS"
