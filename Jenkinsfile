@@ -27,20 +27,8 @@ pipeline {
 
         stage('Deploy Localhost') {
             steps {
-                bat """
-                taskkill /F /IM python.exe >nul 2>&1 || exit /b 0
-                start "" /B "%PYTHON%" app.py
-                """
+                bat "\"%PYTHON%\" app.py"
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'PIPELINE SUCCESS'
-        }
-        failure {
-            echo 'PIPELINE FAILED'
         }
     }
 }
