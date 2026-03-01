@@ -29,7 +29,7 @@ pipeline {
             steps {
                 bat '''
                 taskkill /F /IM python.exe >nul 2>&1 || exit /b 0
-                start "" /B "%PYTHON%" app.py
+                powershell -Command "Start-Process '%PYTHON%' -ArgumentList 'app.py'"
                 '''
             }
         }
