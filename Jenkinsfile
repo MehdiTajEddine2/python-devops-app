@@ -15,7 +15,7 @@ pipeline {
 
         stage('Code Review') {
             steps {
-                bat "\"%PYTHON%\" -m flake8 app.py --ignore=W292,W293"
+                bat "\"%PYTHON%\" -m flake8 app.py"
             }
         }
 
@@ -27,8 +27,20 @@ pipeline {
 
         stage('Deploy Localhost') {
             steps {
-                bat "\"%PYTHON%\" app.py"
+                bat '''
+                taskkill /F /IM python.exe >nul 2>&1
+                start "" /B "%PYTHON%" app.py
+                '''
             }
+        }
+    }
+
+    post {
+        success {
+            echo "PIPELINE SUCCESS"
+        }
+        failure {
+            echo "PIPELINE FAILED"
         }
     }
 }
