@@ -9,25 +9,28 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat '"%PYTHON%" -m pip install -r requirements.txt'
+                bat "\"%PYTHON%\" -m pip install -r requirements.txt"
             }
         }
 
         stage('Code Review') {
             steps {
-                bat '"%PYTHON%" -m flake8 app.py --ignore=W292,W293'
+                bat "\"%PYTHON%\" -m flake8 app.py --ignore=W292,W293"
             }
         }
 
         stage('Test') {
             steps {
-                bat '"%PYTHON%" -m pytest'
+                bat "\"%PYTHON%\" -m pytest"
             }
         }
 
         stage('Deploy Localhost') {
             steps {
-                bat 'start "" /B "%PYTHON%" app.py'
+                bat """
+                taskkill /F /IM python.exe >nul 2>&1
+                start "" /B "%PYTHON%" app.py
+                """
             }
         }
     }
