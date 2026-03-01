@@ -27,17 +27,18 @@ pipeline {
 
         stage('Deploy Localhost') {
             steps {
-                bat 'start /B "%PYTHON%" app.py'
+                bat 'start "" /B "%PYTHON%" app.py'
+                bat 'timeout /t 3 >nul'
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline SUCCESS'
+            echo 'PIPELINE SUCCESS'
         }
         failure {
-            echo 'Pipeline FAILED'
+            echo 'PIPELINE FAILED'
         }
     }
 }
