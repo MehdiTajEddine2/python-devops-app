@@ -28,7 +28,6 @@ pipeline {
         stage('Deploy Localhost') {
             steps {
                 bat 'start "" /B "%PYTHON%" app.py'
-                bat 'timeout /t 3 >nul'
             }
         }
     }
