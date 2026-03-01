@@ -29,7 +29,7 @@ pipeline {
             steps {
                 bat '''
                 taskkill /F /IM python.exe >nul 2>&1 || exit /b 0
-                cmd /c start "FlaskApp" "%PYTHON%" app.py
+                start cmd /k "%PYTHON% app.py"
                 '''
             }
         }
