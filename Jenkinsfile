@@ -28,8 +28,7 @@ pipeline {
         stage('Deploy Localhost') {
             steps {
                 bat '''
-                taskkill /F /IM python.exe >nul 2>&1 || exit /b 0
-                start cmd /k "%PYTHON% app.py"
+                start "" cmd /c "%PYTHON% app.py"
                 '''
             }
         }
