@@ -29,7 +29,7 @@ pipeline {
             steps {
                 bat '''
                 cd /d C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\python-devops-pipeline
-                start "" cmd /c "%PYTHON% app.py"
+                powershell -Command "Start-Process '%PYTHON%' -ArgumentList 'app.py' -WindowStyle Hidden"
                 '''
             }
         }
