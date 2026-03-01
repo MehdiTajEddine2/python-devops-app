@@ -28,6 +28,7 @@ pipeline {
         stage('Deploy Localhost') {
             steps {
                 bat '''
+                cd /d C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\python-devops-pipeline
                 start "" cmd /c "%PYTHON% app.py"
                 '''
             }
