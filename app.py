@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "%Pipeline Success Listening every 1min% "
+    return "%Success: Listening every 1min% "
 
 
 if __name__ == "__main__":
